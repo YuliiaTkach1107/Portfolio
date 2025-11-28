@@ -5,7 +5,7 @@
       <div class="nav-container">
         <Link href="/" class="logo">Y<span>T</span></Link>
         <div class="links">
-          <Link href="/projects" :class="{ active: $page.url.startsWith('/projets') }">Projets</Link>
+          <Link href="/projects" :class="{ active: $page.url.startsWith('/projects') }">Projets</Link>
           <Link href="/about" :class="{ active: $page.url.startsWith('/about') }">About</Link>
         </div>
       </div>

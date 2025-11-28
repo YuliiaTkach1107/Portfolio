@@ -27,7 +27,7 @@ Route::get('/about', function () {
     ]); // Название Vue-компонента
 });
 Route::get('/projects', function () {
-    $projects = Project::all();
+    $projects = Project::with(['technologies','images'])->get();
     return Inertia::render('Projects',[
         'projects'=>$projects,
     ]); // Название Vue-компонента

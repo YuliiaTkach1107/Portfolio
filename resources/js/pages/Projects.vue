@@ -73,6 +73,8 @@
     </button>
 
   </div>
+
+<!--TOUS-->
       <div v-if="activeTab === 'tous'" 
           class=" w-3/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 m-auto">
 
@@ -81,24 +83,108 @@
         class="card-project border p-5 rounded-xl flex flex-col gap-2">
 
     <p class="font-bold text-lg mb-2">{{ project.title }}</p>
-    <p class="text-gray-600 mb-3">{{ project.short_description }}</p>
+    <p class="text-gray-600 mb-3 text-sm">{{ project.short_description }}</p>
 
     <!-- Технологии -->
     <div class="flex gap-2 flex-wrap mt-2">
       <span
         v-for="tech in project.technologies"
         :key="tech.id"
-        class="px-3 py-1 rounded-full text-sm font-medium"
+        class="px-3 py-1 rounded-full text-sm"
+        :style="{ backgroundColor: tech.color }"
+      >
+        {{ tech.name }}
+      </span>
+      
+    </div>
+   <button class="flex items-center gap-2 opacity-70 hover:opacity-100 transition-opacity text-sm">
+                  Voir le détail
+                  <ArrowRight size='16' />
+                </button>
+  </div>
+
+</div>
+
+<!--WEB-->
+<div v-if="activeTab === 'web'" class="w-3/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 m-auto">
+  <div 
+    v-for="project in projects.filter(p => p.type === 'Site web')" 
+    :key="project.id"
+    class="card-project border p-5 rounded-xl flex flex-col gap-2"
+  >
+    <p class="font-bold text-lg mb-2">{{ project.title }}</p>
+    <p class="text-gray-600 mb-3 text-sm">{{ project.short_description }}</p>
+    <div class="flex gap-2 flex-wrap mt-2">
+      <span
+        v-for="tech in project.technologies"
+        :key="tech.id"
+        class="px-3 py-1 rounded-full text-sm"
         :style="{ backgroundColor: tech.color }"
       >
         {{ tech.name }}
       </span>
     </div>
 
+    <button class="flex items-center gap-2 opacity-70 hover:opacity-100 transition-opacity text-sm">
+      Voir le détail
+      <ArrowRight size='16' />
+    </button>
   </div>
-
 </div>
 
+<!--APP-->
+<div v-if="activeTab === 'application'" class="w-3/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 m-auto">
+  <div 
+    v-for="project in projects.filter(p => p.type === 'App mobile')" 
+    :key="project.id"
+    class="card-project border p-5 rounded-xl flex flex-col gap-2"
+  >
+    <p class="font-bold text-lg mb-2">{{ project.title }}</p>
+    <p class="text-gray-600 mb-3 text-sm">{{ project.short_description }}</p>
+    <div class="flex gap-2 flex-wrap mt-2">
+      <span
+        v-for="tech in project.technologies"
+        :key="tech.id"
+        class="px-3 py-1 rounded-full text-sm"
+        :style="{ backgroundColor: tech.color }"
+      >
+        {{ tech.name }}
+      </span>
+    </div>
+
+    <button class="flex items-center gap-2 opacity-70 hover:opacity-100 transition-opacity text-sm">
+      Voir le détail
+      <ArrowRight size='16' />
+    </button>
+  </div>
+</div>
+
+<!--DESIGN-->
+<div v-if="activeTab === 'UI/UX'" class="w-3/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 m-auto">
+  <div 
+    v-for="project in projects.filter(p => p.type === 'Design')" 
+    :key="project.id"
+    class="card-project border p-5 rounded-xl flex flex-col gap-2"
+  >
+    <p class="font-bold text-lg mb-2">{{ project.title }}</p>
+    <p class="text-gray-600 mb-3 text-sm">{{ project.short_description }}</p>
+    <div class="flex gap-2 flex-wrap mt-2">
+      <span
+        v-for="tech in project.technologies"
+        :key="tech.id"
+        class="px-3 py-1 rounded-full text-sm"
+        :style="{ backgroundColor: tech.color }"
+      >
+        {{ tech.name }}
+      </span>
+    </div>
+
+    <button class="flex items-center gap-2 opacity-70 hover:opacity-100 transition-opacity text-sm">
+      Voir le détail
+      <ArrowRight size='16' />
+    </button>
+  </div>
+</div>
 </div>
 </NavigationLayout>
 </template>
@@ -107,6 +193,7 @@
 import { ref } from 'vue';
 import NavigationLayout from '@/Layouts/NavigationLayout.vue';
 import { defineProps } from 'vue';
+import { ArrowRight } from 'lucide-vue-next';
 
 const activeTab = ref('tous');
 
@@ -189,7 +276,7 @@ h4{
   font-style:normal;
   font-size:16px;
 }
-p,li,span{
+p,li,span,button{
   font-family: "Tinos", serif;
   font-weight: 400;
   font-style: normal;
@@ -201,5 +288,11 @@ span.logo{
 
 .card-project{
   background-color:rgb(227, 227, 227);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.card-project:hover{
+transform: translateY(-5px);
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 </style>

@@ -166,7 +166,10 @@
          v-for='tech in technologies' 
          :key="tech.id">
          
-        <div class="flex items-center justify-between mb-4 columns">
+         <img :src="tech.logo" alt="Logo" class="w-8 h-8 mr-4 mb-4" />
+        
+         
+        <div class="flex items-center justify-between mb-4 columns md:text-left">
           <div>
             <h3 class="mb-1">{{ tech.name }}</h3>
             <span class="text-sm opacity-60">{{ tech.category }}</span>
@@ -230,7 +233,7 @@
           :key="index"
           class="px-4 py-2 rounded-lg text-sm font-medium shadow-sm hover:scale-105 transition-transform duration-200 card-interet"
         >
-          {{ interet }}
+          <p>{{ interet }}</p>
         </div>
       </div>
       <div 
